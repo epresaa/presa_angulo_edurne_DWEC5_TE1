@@ -29,9 +29,11 @@ export class JuegoComponent {
   recogerDatos(formu: NgForm): void {
     // La directiva comprueba si los campos required se han cumplimentado
     if(formu.invalid) {
-      alert("¡Error! Debe rellenar todos los campos del formulario")
+      alert("¡Error! Debe rellenar todos los campos del formulario");
+      return;
     } if(this.config.rangoNumeros <= 0 || this.config.intentos <= 0) {
-      alert("¡Error! El rango y los intentos deben ser superiores a 0")
+      alert("¡Error! El rango y los intentos deben ser superiores a 0");
+      return;
     } else {
       // Saludar
       this.saludo = true;
