@@ -1,0 +1,47 @@
+<h1>Juego de Adivinación de Números Aleatorios - DWEC05 - Edurne Presa</h1>
+<hr>
+
+<!-- Configuración -->
+<h2>Parámetros de Configuración del Juego</h2>
+<form #miFormulario="ngForm">
+    <label for="nombre">Nombre: </label><br>
+    <input type="text" id="nombre" name="nombre" [(ngModel)]="config.nombre" required><br><br>
+
+    <label for="apellido">Apellido: </label><br>
+    <input type="text" id="apellido" name="apellido" [(ngModel)]="config.apellido" required><br><br>
+
+    <label for="rangoNumeros">Rango de números a generar: </label><br>
+    <input type="number" id="rangoNumeros" name="rangoNumeros" [(ngModel)]="config.rangoNumeros" required><br><br>
+
+    <label for="intentos">Número de intentos: </label><br>
+    <input type="number" id="intentos" name="intentos" [(ngModel)]="config.intentos" required><br><br>
+
+    <button (click)="recogerDatos(miFormulario)">Recoger Datos</button>
+</form>
+<hr>
+
+<!-- Juego Customizado -->
+<h2 *ngIf="saludo">Ongi Etorri {{config.nombre}} {{config.apellido}}</h2>
+<form>
+    <label for="intento">Introduce el Número a Adivinar</label><br>
+    <input type="number" id="intento" name="intento" [(ngModel)]="intento" required><br><br>
+
+    <!-- Intentos -->
+    <p *ngIf="saludo && !adivinado">Intentos Restantes: {{contador}}</p>
+    <p *ngIf="saludo && adivinado">{{contador + 1}}</p>
+
+    <!-- Feedback -->
+    <p *ngIf="mostrar && !adivinado">¿Has Adivinado?: NO</p>
+    <p *ngIf="adivinado">¿Has Adivinado?: SI</p>
+    
+    <button (click)="enviarIntento()" [disabled]="terminado">Enviar</button>
+</form>
+<hr>
+
+<!-- Partida perdida -->
+<div *ngIf="pierde">
+    <p>Se han acabado los intentos</p>
+    <ul>
+        <li *ngFor="let i of arrIntentos">{{i}}</li>
+    </ul>
+</div>

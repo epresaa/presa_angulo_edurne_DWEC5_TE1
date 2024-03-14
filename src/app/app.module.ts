@@ -1,20 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 
+// Import de FormsModule: necesario para usar NgModel y hacer Two-Way Data Binding
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+
+import { JuegoComponent } from './juego/juego.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    
+    JuegoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule           // Se añade a los imports
   ],
   providers: [
     provideClientHydration()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [JuegoComponent]
 })
 export class AppModule { }
